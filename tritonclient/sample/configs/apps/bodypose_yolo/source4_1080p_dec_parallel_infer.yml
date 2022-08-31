@@ -197,7 +197,7 @@ primary-gie0:
   #interval: 0
   gie-unique-id: 1
   nvbuf-memory-type: 0
-  #config-file: /opt/nvidia/deepstream/deepstream-6.1/sources/apps/sample_apps/deepstream-parallel-infer/config_infer_primary_yoloV4.txt
+  #config-file: ../../yolov4/config_yolov4_infer.txt
   config-file: ../../yolov4/config_yolov4_inferserver.txt
 
 branch0:
@@ -234,7 +234,7 @@ primary-gie1:
   interval: 0
   gie-unique-id: 2
   nvbuf-memory-type: 0
-  #config-file: /opt/nvidia/deepstream/deepstream-6.1/sources/apps/sample_apps/deepstream-parallel-infer/deepstream_pose_estimation_config.txt
+  #config-file: ../../bodypose2d/config_body2_inferserver.txt
   config-file: ../../bodypose2d/config_body2_infer.txt
 
 branch1:
@@ -255,24 +255,6 @@ secondary-gie1:
   enable: 0
   ##supoort multiple sgie
   cfg-file-path: secondary-gie1.yml  
-
-primary-gie2:
-  enable: 0
-  #(0): nvinfer; (1): nvinferserver
-  plugin-type: 1
-  gpu-id: 0
-  #input-tensor-meta: 1
-  batch-size: 4
-  #Required by the app for OSD, not a plugin property
-  bbox-border-color0: 1;0;0;1
-  bbox-border-color1: 0;1;1;1
-  bbox-border-color2: 0;0;1;1
-  bbox-border-color3: 0;1;0;1
-  interval: 0
-  gie-unique-id: 3
-  nvbuf-memory-type: 0
-  #config-file: /opt/nvidia/deepstream/deepstream-6.1/sources/apps/sample_apps/deepstream-parallel-infer/deepstream_pose_estimation_config.txt
-  config-file: ../../trafficcamnet/config_trafficcamnet_inferserver.txt
 
 branch2:
   ## pgie's id

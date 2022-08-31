@@ -37,25 +37,24 @@ For x86 platform, since some sample models work with [nvinferserver](https://doc
 # Steps To Run the Sample App
 
 The sample should be download and build with root.
-```
-sudo -i
-```
 
 1. Download the source code
 ```
 apt install git-lfs
 git lfs install
-git clone https://github.com/NVIDIA-AI-IOT/deepstream_parallel_inference_app.git
+git clone https://gitlab-master.nvidia.com/CTSE-AI_Computing/deepstream/deepstream_multiple_models_app.git
 ```
 If the git LFS download fails to download the sample models of bodypose2d and YoloV4, use the https://drive.google.com/drive/folders/1GJEGQSg6qlWuNqUVVlNOxR6AGMNLfkYN?usp=sharing link to download the sample models.
 
-2. Prepare the sample Yolov4, bodypose2d, trafficcamnet, LPD and LPR models
+2. Prepare the sample Yolov4, bodypose2d, trafficcamnet, LPD and LPR models and prepare the enviroment.
 
 For dGPU
+Use the DeepStream Triton docker to run the sample on x86. https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_Quickstart.html#deepstream-triton-inference-server-usage-guidelines
 ```
 cd deepstream_multiple_models_app/tritonserver
 chmod 755 gen_engine_dgpu.sh
 ./gen_engine_dgpu.sh
+export CUDA_VER=11.7
 ```
 
 For Jetson
@@ -67,23 +66,14 @@ cd -
 cd deepstream_multiple_models_app/tritonserver
 chmod 755 gen_engine_jetson.sh
 ./gen_engine_jetson.sh
-```
-
-3. Build and run the sample application
-
-For dGPU
-```
-export CUDA_VER=11.7
-```
-For Jetson
-```
 export CUDA_VER=11.4
 apt-get install libjson-glib-dev
 apt install libgstrtspserver-1.0-dev
 export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1
 ```
 
-Make the app and sample post-processing libraries and run the sample
+3. Build and run the sample application
+
 ```
 cd ../tritonclient/sample
 make
@@ -131,6 +121,23 @@ The metamux group properties are:
 |config-file|Pathname of the configuration file for gst-dsmetamux plugin | String         |config-file: ./config_metamux.txt|dGPU, Jetson|
 
 The gst-dsmetamux configuration details are introduced in gst-dsmetamux plugin README. 
+
+# Sample Models
+
+The sample application uses the following models as samples.
+
+|Model Name | Inference Backend |                     source                                |
+|-----------|-------------------|-----------------------------------------------------------|
+|bodypose2d |TensorRT and Triton|https://github.com/NVIDIA-AI-IOT/deepstream_pose_estimation|
+|YoloV4     |TensorRT and Triton|https://github.com/NVIDIA-AI-IOT/yolov4_deepstream|
+|peoplenet|Triton|https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/peoplenet|
+|Primary Car detection|Triton|DeepStream SDK|
+|Secondary Car color|Triton|DeepStream SDK|
+|Secondary Car maker|Triton|DeepStream SDK|
+|Secondary Car type|Triton|DeepStream SDK|
+|trafficcamnet|Triton|https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/trafficcamnet|
+|LPD|Triton|https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/lpdnet|
+|LPR|Triton|https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/lprnet|
 
 # Generates inferencing branches with configuration files
 

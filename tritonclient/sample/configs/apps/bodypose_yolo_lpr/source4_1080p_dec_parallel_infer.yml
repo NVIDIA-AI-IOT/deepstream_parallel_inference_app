@@ -192,7 +192,7 @@ primary-gie0:
   #interval: 0
   gie-unique-id: 1
   nvbuf-memory-type: 0
-  #config-file: /opt/nvidia/deepstream/deepstream-6.1/sources/apps/sample_apps/deepstream-parallel-infer/config_infer_primary_yoloV4.txt
+  #config-file: ../../yolov4/config_yolov4_infer.txt
   config-file: ../../yolov4/config_yolov4_inferserver.txt
 
 branch0:
@@ -229,7 +229,7 @@ primary-gie1:
   interval: 0
   gie-unique-id: 2
   nvbuf-memory-type: 0
-  #config-file: /opt/nvidia/deepstream/deepstream-6.1/sources/apps/sample_apps/deepstream-parallel-infer/deepstream_pose_estimation_config.txt
+  #config-file: ../../bodypose2d/config_body2_infer.txt
   config-file: ../../bodypose2d/config_body2_inferserver.txt
 
 branch1:
@@ -266,7 +266,6 @@ primary-gie2:
   interval: 0
   gie-unique-id: 3
   nvbuf-memory-type: 0
-  #config-file: /opt/nvidia/deepstream/deepstream-6.1/sources/apps/sample_apps/deepstream-parallel-infer/deepstream_pose_estimation_config.txt
   config-file: ../../trafficcamnet/config_trafficcamnet_inferserver.txt
 
 branch2:
