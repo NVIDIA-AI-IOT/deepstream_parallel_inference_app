@@ -123,18 +123,18 @@ The gst-dsmetamux configuration details are introduced in gst-dsmetamux plugin R
 
 The sample application uses the following models as samples.
 
-|Model Name | Inference Backend |                     source                                |
+|Model Name | Inference Type |                     source                                |
 |-----------|-------------------|-----------------------------------------------------------|
-|bodypose2d |TensorRT and Triton|https://github.com/NVIDIA-AI-IOT/deepstream_pose_estimation|
-|YoloV4     |TensorRT and Triton|https://github.com/NVIDIA-AI-IOT/yolov4_deepstream|
-|peoplenet|Triton|https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/peoplenet|
-|Primary Car detection|Triton|DeepStream SDK|
-|Secondary Car color|Triton|DeepStream SDK|
-|Secondary Car maker|Triton|DeepStream SDK|
-|Secondary Car type|Triton|DeepStream SDK|
-|trafficcamnet|Triton|https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/trafficcamnet|
-|LPD|Triton|https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/lpdnet|
-|LPR|Triton|https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/lprnet|
+|bodypose2d |nvinfer, nvinferserver|https://github.com/NVIDIA-AI-IOT/deepstream_pose_estimation|
+|YoloV4     |nvinfer, nvinferserver|https://github.com/NVIDIA-AI-IOT/yolov4_deepstream|
+|peoplenet|nvinferserver|https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/peoplenet|
+|Primary Car detection|nvinferserver|DeepStream SDK|
+|Secondary Car color|nvinferserver|DeepStream SDK|
+|Secondary Car maker|nvinferserver|DeepStream SDK|
+|Secondary Car type|nvinferserver|DeepStream SDK|
+|trafficcamnet|nvinferserver|https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/trafficcamnet|
+|LPD|nvinferserver|https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/lpdnet|
+|LPR|nvinferserver|https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/lprnet|
 
 # Generates inferencing branches with configuration files
 
