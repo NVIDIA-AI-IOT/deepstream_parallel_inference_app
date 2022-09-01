@@ -3,11 +3,7 @@
 DeepStream Parallel Inference is one application which run inference in parallel. tee will send batched buffer to different models.  nvdsmetamux will mux batch meta from different models which run in parallel. User can configure the pipeline in application configuration yaml file. User can select source ids which need inference in preprocess configuration file. User can select source ids which need mux in nvdsmetamux configuration file.
 
 ## Prerequisites
-You will need
-1. DeepStreamSDK 6.1
-2. CUDA 11.4
-3. TensorRT 8.x
-
+DeepStreamSDK 6.1.1 GA
 
 ## Getting Started:
 To get started, please follow these steps.
