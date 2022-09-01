@@ -42,16 +42,17 @@ The sample should be download and build with root.
 ```
 apt install git-lfs
 git lfs install
-git clone https://gitlab-master.nvidia.com/CTSE-AI_Computing/deepstream/deepstream_multiple_models_app.git
+git clone https://github.com/NVIDIA-AI-IOT/deepstream_parallel_inference_app.git
 ```
 If the git LFS download fails to download the sample models of bodypose2d and YoloV4, use the https://drive.google.com/drive/folders/1GJEGQSg6qlWuNqUVVlNOxR6AGMNLfkYN?usp=sharing link to download the sample models.
 
 2. Prepare the sample Yolov4, bodypose2d, trafficcamnet, LPD and LPR models and prepare the enviroment.
 
 For dGPU
+
 Use the DeepStream Triton docker to run the sample on x86. https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_Quickstart.html#deepstream-triton-inference-server-usage-guidelines
 ```
-cd deepstream_multiple_models_app/tritonserver
+cd deepstream_parallel_inference_app/tritonserver
 chmod 755 gen_engine_dgpu.sh
 ./gen_engine_dgpu.sh
 export CUDA_VER=11.7
@@ -63,7 +64,7 @@ cd /opt/nvidia/deepstream/deepstream/samples
 vi triton_backend_setup.sh
 ./triton_backend_setup.sh
 cd -
-cd deepstream_multiple_models_app/tritonserver
+cd deepstream_parallel_inference_app/tritonserver
 chmod 755 gen_engine_jetson.sh
 ./gen_engine_jetson.sh
 export CUDA_VER=11.4
