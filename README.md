@@ -53,7 +53,6 @@ For dGPU
 Use the DeepStream Triton docker to run the sample on x86. https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_Quickstart.html#deepstream-triton-inference-server-usage-guidelines
 ```
 cd deepstream_parallel_inference_app/tritonserver
-chmod 755 gen_engine_dgpu.sh
 ./gen_engine_dgpu.sh
 export CUDA_VER=11.7
 ```
@@ -61,15 +60,12 @@ export CUDA_VER=11.7
 For Jetson
 ```
 cd /opt/nvidia/deepstream/deepstream/samples
-vi triton_backend_setup.sh
 ./triton_backend_setup.sh
 cd -
 cd deepstream_parallel_inference_app/tritonserver
-chmod 755 gen_engine_jetson.sh
 ./gen_engine_jetson.sh
 export CUDA_VER=11.4
-apt-get install libjson-glib-dev
-apt install libgstrtspserver-1.0-dev
+apt-get install libjson-glib-dev libgstrtspserver-1.0-dev
 export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1
 ```
 
