@@ -1,9 +1,16 @@
 #!/bin/bash
+
+IS_JETSON_PLATFORM=`uname -i | grep aarch64`
+
 export PATH=$PATH:/usr/src/tensorrt/bin
 
 trtexec --fp16 --onnx=./models/yolov4/1/yolov4_-1_3_416_416_dynamic.onnx.nms.onnx --saveEngine=./models/yolov4/1/yolov4_-1_3_416_416_dynamic.onnx_b32_gpu0.engine  --minShapes=input:1x3x416x416 --optShapes=input:16x3x416x416 --maxShapes=input:32x3x416x416 --shapes=input:16x3x416x416 --workspace=10000
 
-wget --content-disposition 'https://api.ngc.nvidia.com/v2/resources/nvidia/tao/tao-converter/versions/v3.22.05_trt8.4_x86/files/tao-converter'
+if [ ! ${IS_JETSON_PLATFORM} ]; then
+    wget --content-disposition 'https://api.ngc.nvidia.com/v2/resources/nvidia/tao/tao-converter/versions/v3.22.05_trt8.4_x86/files/tao-converter' -O tao-converter
+else
+    wget --content-disposition 'https://api.ngc.nvidia.com/v2/resources/nvidia/tao/tao-converter/versions/v3.22.05_trt8.4_aarch64/files/tao-converter' -O tao-converter
+fi
 chmod 755 tao-converter
 
 mkdir -p models/trafficcamnet/1/
