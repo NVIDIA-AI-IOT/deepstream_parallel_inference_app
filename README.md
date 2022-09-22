@@ -1,6 +1,6 @@
 # Parallel Multiple Models App
 ## Introduction
-The parallel inferencing application constructs the parallel inferencing branches pipeline as the following graph, so that the multiple models can run in parallel in one piepline.
+The parallel inferencing application constructs the parallel inferencing branches pipeline as the following graph, so that the multiple models can run in parallel in one pipeline.
 
 ![Pipeline_Diagram](common.png)
 
