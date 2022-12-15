@@ -1436,6 +1436,11 @@ int main(int argc, char *argv[])
     g_print ("creating sink bin failed\n");
     goto done;
   }
+  //x264enc will output one buffer after input 66 buffers at default, enable zerolatency property.
+  for(int i = 0; i < config->num_sink_sub_bins; i++){
+      if(config->sink_bin_sub_bin_config[i].encoder_config.enc_type == NV_DS_ENCODER_TYPE_SW)
+        g_object_set (G_OBJECT (instance_bin->sink_bin.sub_bins[i].encoder), "tune", 0x4, NULL);
+  }
   gst_bin_add (GST_BIN (pipeline->pipeline), instance_bin->sink_bin.bin);
   NVGSTDS_LINK_ELEMENT (last_elem, instance_bin->sink_bin.bin);
  

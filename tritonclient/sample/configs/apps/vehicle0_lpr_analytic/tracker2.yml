@@ -28,7 +28,7 @@ tracker:
   ll-lib-file: /opt/nvidia/deepstream/deepstream/lib/libnvds_nvmultiobjecttracker.so
   # ll-config-file required to set different tracker types
   # ll-config-file=config_tracker_IOU.yml
-  ll-config-file: /opt/nvidia/deepstream/deepstream-6.1/samples/configs/deepstream-app/config_tracker_NvDCF_perf.yml
+  ll-config-file: /opt/nvidia/deepstream/deepstream/samples/configs/deepstream-app/config_tracker_NvDCF_perf.yml
   # ll-config-file=config_tracker_NvDCF_accuracy.yml
   # ll-config-file=config_tracker_DeepSORT.yml
   gpu-id: 0

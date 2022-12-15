@@ -1,6 +1,6 @@
 # Parallel Multiple Models App
 ## Introduction
-The parallel inferencing application constructs the parallel inferencing branches pipeline as the following graph, so that the multiple models can run in parallel in one pipeline.
+The parallel inferencing application constructs the parallel inferencing branches pipeline as the following graph, so that the multiple models can run in parallel in one piepline.
 
 ![Pipeline_Diagram](common.png)
 
@@ -8,11 +8,14 @@ The parallel inferencing application constructs the parallel inferencing branche
 
 * Support multiple models inference with [nvinfer](https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_plugin_gst-nvinfer.html)(TensorRT) or [nvinferserver](https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_plugin_gst-nvinferserver.html)(Triton) in parallel
 * Support sources selection for different models with [nvstreammux](https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_plugin_gst-nvstreammux.html) and [nvstreamdemux](https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_plugin_gst-nvstreamdemux.html)
-* Support to mux output meta from different sources and different models with **gst-nvdsmetamux** plugin newly introduced in DeepStream 6.1.1
+* Support to mux output meta from different sources and different models with **gst-nvdsmetamux** plugin newly introduced in DeepStream 6.1.1 or above
+
+
 
 
 # Prerequisites
-- DeepStream 6.1.1, especially
+- If you are using a deepstream docker above DeepStream 6.1.1 version, please execute /opt/nvidia/deepstream/deepstream/user_additional_install.sh to install tools such as x264enc which is used in this sample.
+- DeepStream 6.1.1 or above, especially
   - [nvmsgbroker](https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_plugin_gst-nvmsgbroker.html) if you want to enable nvmsgbroker sink, e.g. [Kafka](https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_plugin_gst-nvmsgbroker.html#nvds-kafka-proto-kafka-protocol-adapter)
   - [nvinferserver](https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_plugin_gst-nvinferserver.html) if running model with Triton
 - Cloud server, e.g. Kafka server (version >= kafka_2.12-3.2.0), if you want to enable broker sink
@@ -23,35 +26,44 @@ The parallel inferencing application constructs the parallel inferencing branche
 
 The sample should be downloaded and built with **root** permission.
 
-1. Download 
+1. Download
+
    ```
    apt install git-lfs
    git lfs install --skip-repo
    git clone https://github.com/NVIDIA-AI-IOT/deepstream_parallel_inference_app.git
-   ``` 
+   ```
+
    If git-lfs download fails for bodypose2d and YoloV4 models, get them from Google Drive [link](https://drive.google.com/drive/folders/1GJEGQSg6qlWuNqUVVlNOxR6AGMNLfkYN?usp=sharing)  
-2. Generate Inference Engines 
-   
-   Below instructions are only needed on **Jetson** ([Jetpack 5.0.2](https://developer.nvidia.com/embedded/jetpack-sdk-502))
+
+2. Generate Inference Engines
+
+   Below instructions are only needed on **Jetson** ([Jetpack 5.0.2 or above](https://developer.nvidia.com/embedded/jetpack-sdk-502))
+
    ```
    apt-get install -y libjson-glib-dev libgstrtspserver-1.0-dev
    /opt/nvidia/deepstream/deepstream/samples/triton_backend_setup.sh
-   cp tritonclient/sample/gst-plugins/gst-nvdsmetamux/libnvdsgst_metamux.so \
-              /opt/nvidia/deepstream/deepstream/lib/gst-plugins/libnvdsgst_metamux.so
-   nvpmodel -m 0 && jetson_clocks      ## set power model and boost CPU/GPU/EMC clocks
-   ``` 
-   Below instructions are needed for both  **Jetson** and **dGPU** (DeepStream Triton docker - [6.1.1-triton](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/deepstream/tags)) 
+   ## Only DeepStream 6.1.1 GA need to copy the metamux plugin library. Skip this copy command if DeepStream version is above 6.1.1 GA
+   cp tritonclient/sample/gst-plugins/gst-nvdsmetamux/libnvdsgst_metamux.so /opt/nvidia/deepstream/deepstream/lib/gst-plugins/libnvdsgst_metamux.so
+   ## set power model and boost CPU/GPU/EMC clocks
+   nvpmodel -m 0 && jetson_clocks
+   ```
+
+   Below instructions are needed for both  **Jetson** and **dGPU** (DeepStream Triton docker - [6.1.1-triton or above](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/deepstream/tags))
+
    ```
    cd tritonserver/
-   ./build_engine.sh       ## this will take 1~2 hours to build TensorRT engines
-   ``` 
-3. Build and Run 
+   ./build_engine.sh
+   ```
+
+3. Build and Run
+
    ```
    cd tritonclient/sample/
    source build.sh
-   ./apps/deepstream-parallel-infer/deepstream-parallel-infer \
-                -c configs/apps/bodypose_yolo_lpr/source4_1080p_dec_parallel_infer.yml
-   ``` 
+   ./apps/deepstream-parallel-infer/deepstream-parallel-infer -c configs/apps/bodypose_yolo_lpr/source4_1080p_dec_parallel_infer.yml
+   ```
+
 
 
 # Directory
