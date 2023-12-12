@@ -23,13 +23,13 @@
 name: "Secondary_CarMake"
 platform: "tensorrt_plan"
 max_batch_size: 16
-default_model_filename: "resnet18.caffemodel_b16_gpu0_int8.engine"
+default_model_filename: "resnet18_vehiclemakenet.etlt_b16_gpu0_int8.engine"
 input [
   {
     name: "input_1"
     data_type: TYPE_FP32
     format: FORMAT_NCHW
-    dims: [3, 224, 224]
+    dims: [3, 244, 244]
   }
 ]
 output [

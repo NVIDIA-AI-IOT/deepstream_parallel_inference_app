@@ -24,12 +24,12 @@
 #ifndef __NVGSTDS_APP_H__
 #define __NVGSTDS_APP_H__
 
+#include <gst/gst.h>
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-#include <gst/gst.h>
 #include <stdio.h>
 
 #include "deepstream_app_version.h"

@@ -31,7 +31,7 @@ secondary-gie0:
   gie-unique-id: 11
   operate-on-gie-id: 1
   operate-on-class-ids: 0
-  config-file: /opt/nvidia/deepstream/deepstream/samples/configs/deepstream-app/config_infer_secondary_carcolor.txt
+  config-file: /opt/nvidia/deepstream/deepstream/samples/configs/deepstream-app/config_infer_secondary_vehicletypes.txt
 
 secondary-gie1:
   enable: 1
@@ -43,16 +43,5 @@ secondary-gie1:
   gie-unique-id: 12
   operate-on-gie-id: 1
   operate-on-class-ids: 0
-  config-file: /opt/nvidia/deepstream/deepstream/samples/configs/deepstream-app/config_infer_secondary_vehicletypes.txt
+  config-file: /opt/nvidia/deepstream/deepstream/samples/configs/deepstream-app/config_infer_secondary_vehiclemake.txt
 
-secondary-gie2:
-  enable: 1
-  ##(0): nvinfer; (1): nvinferserver
-  plugin-type: 0
-  ## nvinferserserver's gpu-id can only set from its own config-file
-  #gpu-id=0
-  batch-size: 16
-  gie-unique-id: 13
-  operate-on-gie-id: 1
-  operate-on-class-ids: 0
-  config-file: /opt/nvidia/deepstream/deepstream/samples/configs/deepstream-app/config_infer_secondary_carmake.txt

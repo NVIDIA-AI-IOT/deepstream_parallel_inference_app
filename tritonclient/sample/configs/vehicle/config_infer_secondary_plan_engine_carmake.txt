@@ -43,12 +43,11 @@ infer_config {
     frame_scaling_filter: 1
     normalize {
       scale_factor: 1
-      mean_file: "/opt/nvidia/deepstream/deepstream/samples/models/Secondary_CarMake/mean.ppm"
     }
   }
 
   postprocess {
-    labelfile_path: "/opt/nvidia/deepstream/deepstream/samples/models/Secondary_CarMake/labels.txt"
+    labelfile_path: "/opt/nvidia/deepstream/deepstream/samples/models/Secondary_VehicleMake/labels.txt"
     classification {
       threshold: 0.51
     }

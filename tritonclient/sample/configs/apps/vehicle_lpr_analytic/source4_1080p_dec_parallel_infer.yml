@@ -197,7 +197,7 @@ primary-gie0:
   #interval: 0
   gie-unique-id: 1
   nvbuf-memory-type: 0
-  config-file: ../../vehicle/config_infer_plan_engine_primary.txt
+  config-file: ../../trafficcamnet/config_trafficcamnet_inferserver.txt
 
 branch0:
   ## pgie's id

@@ -71,7 +71,7 @@ infer_config {
 input_control {
   operate_on_gie_id: 3
   process_mode: PROCESS_MODE_CLIP_OBJECTS
-  interval: 0
+  secondary_reinfer_interval: 0
   object_control {
     bbox_filter {
       min_width: 40

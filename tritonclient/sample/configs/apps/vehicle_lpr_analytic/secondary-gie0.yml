@@ -31,7 +31,7 @@ secondary-gie0:
   gie-unique-id: 11
   operate-on-gie-id: 1
   operate-on-class-ids: 0
-  config-file: ../../vehicle/config_infer_secondary_plan_engine_carcolor.txt
+  config-file: ../../vehicle/config_infer_secondary_plan_engine_vehicletypes.txt
 
 secondary-gie1:
   enable: 1
@@ -41,18 +41,6 @@ secondary-gie1:
   #gpu-id=0
   batch-size: 16
   gie-unique-id: 12
-  operate-on-gie-id: 1
-  operate-on-class-ids: 0
-  config-file: ../../vehicle/config_infer_secondary_plan_engine_vehicletypes.txt
-
-secondary-gie2:
-  enable: 1
-  ##(0): nvinfer; (1): nvinferserver
-  plugin-type: 1
-  ## nvinferserserver's gpu-id can only set from its own config-file
-  #gpu-id=0
-  batch-size: 16
-  gie-unique-id: 13
   operate-on-gie-id: 1
   operate-on-class-ids: 0
   config-file: ../../vehicle/config_infer_secondary_plan_engine_carmake.txt
