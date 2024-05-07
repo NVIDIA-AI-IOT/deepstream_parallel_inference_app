@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright (c) <2022> NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright (c) <2022-2024> NVIDIA CORPORATION & AFFILIATES. All rights reserved.
  * SPDX-License-Identifier: MIT
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -53,6 +53,7 @@
  * resolution. */
 #define MUXER_OUTPUT_WIDTH 1920
 #define MUXER_OUTPUT_HEIGHT 1080
+#define MAX_STR_LEN 2048
 
 AppCtx *appCtx;
 static guint cintr = FALSE;
@@ -1252,6 +1253,8 @@ int main(int argc, char *argv[])
   GstPad *osd_sink_pad = NULL;
   GError *error = NULL;
   guint i;
+  const gchar *new_mux_str = NULL;
+  gboolean use_new_mux = FALSE;
 
   ctx = g_option_context_new ("Nvidia DeepStream Parallel Demo");
   group = g_option_group_new ("abc", NULL, NULL, NULL, NULL);
@@ -1325,6 +1328,29 @@ int main(int argc, char *argv[])
       goto done;
   }
   gst_bin_add (GST_BIN (pipeline->pipeline), pipeline->multi_src_bin.bin);
+
+  /* if using new sreammux, nvvideocovnert will scale input resolutions to the same resolution */
+  new_mux_str = g_getenv ("USE_NEW_NVSTREAMMUX");
+  use_new_mux = !g_strcmp0 (new_mux_str, "yes");
+  if (use_new_mux) {
+      GstCaps* caps = NULL;
+      gchar * caps_string = NULL;
+      GstCaps* fiter_caps = NULL;
+      char strCaps[MAX_STR_LEN] = {0};
+      for (int i = 0; i < config->num_source_sub_bins; i++){
+          g_object_get (G_OBJECT (pipeline->multi_src_bin.sub_bins[i].cap_filter1), "caps", &caps, NULL);
+          caps_string = gst_caps_to_string (caps);
+          snprintf(strCaps, MAX_STR_LEN-1, "%s,width=%d, height=%d", caps_string,
+            config->streammux_config.pipeline_width, config->streammux_config.pipeline_height);
+          fiter_caps = gst_caps_from_string (strCaps);
+          g_object_set (G_OBJECT (pipeline->multi_src_bin.sub_bins[i].cap_filter1), "caps", fiter_caps, NULL);
+          printf("strCaps:%s\n", strCaps);
+
+          gst_caps_unref (caps);
+          gst_caps_unref (fiter_caps);
+          g_free (caps_string);
+      }
+  }
 
   if (config->streammux_config.is_parsed){
     if(!set_streammux_properties (&config->streammux_config,

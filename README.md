@@ -8,6 +8,7 @@ The parallel inferencing application constructs the parallel inferencing branche
 
 * Support multiple models inference with [nvinfer](https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_plugin_gst-nvinfer.html)(TensorRT) or [nvinferserver](https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_plugin_gst-nvinferserver.html)(Triton) in parallel
 * Support sources selection for different models with [nvstreammux](https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_plugin_gst-nvstreammux.html) and [nvstreamdemux](https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_plugin_gst-nvstreamdemux.html)
+* Support [new nvstreammux](https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_plugin_gst-nvstreammux2.html). you can set "export USE_NEW_NVSTREAMMUX=yes" to use new streammux.
 * Support to mux output meta from different sources and different models with **gst-nvdsmetamux** plugin newly introduced in DeepStream 6.1.1 or above
 
 
