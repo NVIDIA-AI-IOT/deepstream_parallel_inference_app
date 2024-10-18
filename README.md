@@ -1,4 +1,13 @@
 # Parallel Multiple Models App
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+This sample has been moved to https://github.com/NVIDIA-AI-IOT/deepstream_reference_apps/tree/master/deepstream_parallel_inference_app
+
+Please refer to the new link.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 ## Introduction
 The parallel inferencing application constructs the parallel inferencing branches pipeline as the following graph, so that the multiple models can run in parallel in one piepline.
 
